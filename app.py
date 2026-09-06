@@ -37,7 +37,12 @@ future_predictions = scaler.inverse_transform(future_pred_scaled)
 
 # --- Newly added section (Current Value) ---
 latest_date_str = new_df.index[-1].strftime('%Y-%m-%d')
-latest_price = float(new_df['Close'].iloc[-1])
+latest_price = float(new_df.iloc[-1, 0])
+
+st.subheader("Current Exchange Rate:")
+st.metric(label=f"Latest Value ({latest_date_str})", value=f"₹ {latest_price:.4f}")
+st.markdown("---")
+# ----------------------------------------
 
 st.subheader("Current Exchange Rate:")
 st.metric(label=f"Latest Value ({latest_date_str})", value=f"₹ {latest_price:.4f}")
