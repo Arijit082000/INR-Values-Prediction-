@@ -44,11 +44,6 @@ st.metric(label=f"Latest Value ({latest_date_str})", value=f"₹ {latest_price:.
 st.markdown("---")
 # ----------------------------------------
 
-st.subheader("Current Exchange Rate:")
-st.metric(label=f"Latest Value ({latest_date_str})", value=f"₹ {latest_price:.4f}")
-st.markdown("---")
-# ----------------------------------------
-
 st.subheader("Next 5-Day Forecast:")
 last_date = new_df.index[-1]
 
