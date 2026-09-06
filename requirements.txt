@@ -1,6 +1,7 @@
 streamlit
-numpy
+numpy<2.0
 pandas
 yfinance
 scikit-learn
-tensorflow
+tensorflow==2.15.0
+
