@@ -14,7 +14,7 @@ st.write("A Deep Learning (LSTM) based time-series forecasting model predicting 
 # Cache the model and scaler to prevent reloading on every app rerun
 @st.cache_resource
 def load_assets():
-    model = load_model('usdinr_lstm_model.keras')
+    model = load_model('usdinr_lstm_model.keras', compile=False)
     with open('scaler.pkl', 'rb') as f:
         scaler = pickle.load(f)
     return model, scaler
