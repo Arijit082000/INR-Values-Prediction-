@@ -35,8 +35,18 @@ X_future = np.reshape(last_60_days_scaled, (1, last_60_days_scaled.shape[0], 1))
 future_pred_scaled = model.predict(X_future)
 future_predictions = scaler.inverse_transform(future_pred_scaled)
 
+# --- Newly added section (Current Value) ---
+latest_date_str = new_df.index[-1].strftime('%Y-%m-%d')
+latest_price = float(new_df['Close'].iloc[-1])
+
+st.subheader("Current Exchange Rate:")
+st.metric(label=f"Latest Value ({latest_date_str})", value=f"₹ {latest_price:.4f}")
+st.markdown("---")
+# ----------------------------------------
+
 st.subheader("Next 5-Day Forecast:")
 last_date = new_df.index[-1]
+
 
 # Display predictions
 for i in range(5):
