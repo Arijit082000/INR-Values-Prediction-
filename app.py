@@ -56,7 +56,7 @@ st.metric(label=f"Latest Value ({latest_date_str})", value=f"₹ {current_real_p
 st.markdown("---")
 # -----------------------------
 
-st.subheader("Next 5-Day Forecast (Live Adjusted):")
+st.subheader("Next 5-Day Forecast:")
 last_date = new_df.index[-1]
 
 # Display predictions
