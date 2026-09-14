@@ -45,8 +45,9 @@ current_quote = yf.download("USDINR=X", period="1d", interval="1m", progress=Fal
 latest_date_str = current_quote.index[-1].strftime('%Y-%m-%d %H:%M')
 current_real_price = float(current_quote['Close'].iloc[-1].item())
 
-model_base_price = future_predictions[0][0]  # Model's first day prediction
-price_gap = current_real_price - model_base_price
+# Calculate the price gap to smooth the model's prediction with the real-time price
+model_last_known_value = float(last_30_days[-1][0])
+price_gap = current_real_price - model_last_known_value
 
 # Adjust future predictions dynamically with the fetched live price gap
 future_predictions_adjusted = future_predictions[0] + price_gap
