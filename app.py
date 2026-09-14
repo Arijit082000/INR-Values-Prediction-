@@ -40,8 +40,10 @@ close_scale = scaler.scale_[0]
 future_predictions = (future_pred_scaled - close_min) / close_scale
 
 # --- Automatic Real-Time Bias Correction ---
-latest_date_str = new_df.index[-1].strftime('%Y-%m-%d')
-current_real_price = float(new_df.iloc[-1].item())
+# Fetch real-time data (1-minute interval) for current display and bias adjustment
+current_quote = yf.download("USDINR=X", period="1d", interval="1m", progress=False)
+latest_date_str = current_quote.index[-1].strftime('%Y-%m-%d %H:%M')
+current_real_price = float(current_quote['Close'].iloc[-1].item())
 
 model_base_price = future_predictions[0][0]  # Model's first day prediction
 price_gap = current_real_price - model_base_price
