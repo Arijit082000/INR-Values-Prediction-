@@ -39,18 +39,18 @@ close_min = scaler.min_[0]
 close_scale = scaler.scale_[0]
 future_predictions = (future_pred_scaled - close_min) / close_scale
 
-# --- Automatic Real-Time Bias Correction ---
+# --- Automatic Real-Time Bias Correction (Delta Method) ---
 # Fetch real-time data (1-minute interval) for current display and bias adjustment
 current_quote = yf.download("USDINR=X", period="1d", interval="1m", progress=False)
 latest_date_str = current_quote.index[-1].strftime('%Y-%m-%d %H:%M')
 current_real_price = float(current_quote['Close'].iloc[-1].item())
 
-# Calculate the price gap to smooth the model's prediction with the real-time price
-model_last_known_value = float(last_30_days[-1][0])
-price_gap = current_real_price - model_last_known_value
+# Calculate the price change (Delta) expected by the model
+model_last_input_price = float(last_30_days[-1][0])
+predicted_changes = future_predictions[0] - model_last_input_price
 
-# Adjust future predictions dynamically with the fetched live price gap
-future_predictions_adjusted = future_predictions[0] + price_gap
+# Apply the predicted changes to the current real-time price for a smooth transition
+future_predictions_adjusted = current_real_price + predicted_changes
 # -------------------------------------------
 
 # --- Current Value Section ---
