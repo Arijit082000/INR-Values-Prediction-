@@ -3,7 +3,7 @@
 An end-to-end Deep Learning web application that uses a Long Short-Term Memory (LSTM) neural network to forecast future USD to INR exchange rates. The application fetches real-time financial data, preprocesses it, and generates multi-day predictions through an interactive Streamlit interface.
 
 ##  Live Demo
-* **App Link:** https://8mthgdgjrrjtqyra3rcbmy.streamlit.app/
+* **App Link:** https://inr-values-prediction.streamlit.app
 
 
 
