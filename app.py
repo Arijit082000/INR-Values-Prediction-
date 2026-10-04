@@ -22,7 +22,7 @@ def load_assets():
 model, scaler = load_assets()
 
 # Fetch historical data for lookback input
-@st.cache_data
+@st.cache_data(ttl=3600)
 def get_historical_data():
     df = yf.download('USDINR=X', start='2016-01-01', progress=False, auto_adjust=False)
     if isinstance(df.columns, pd.MultiIndex):
