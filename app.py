@@ -36,7 +36,7 @@ data = df.filter(['Close'])
 # Fetch latest real-time/close price for USD/INR (Ticker: INR=X)
 st.write("Fetching latest data from Yahoo Finance...")
 ticker = "INR=X"
-live_data = yf.download(ticker, period="1d", progress=False, auto_adjust=True)
+live_data = yf.download(ticker, period="1d", interval="1m", progress=False, auto_adjust=True)
 
 if not live_data.empty:
     current_real_price = float(live_data['Close'].iloc[-1].item())
